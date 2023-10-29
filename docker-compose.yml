@@ -1,0 +1,46 @@
+
+version: "3.9"
+services:
+  mongo_db_content_flow:
+    image: mongo:latest
+    ports:
+      - 2717:27017
+    restart: always
+    volumes:
+      - mongo_db_content_flow:/data/db
+
+  redis_cache_content_flow:
+    image: redis:latest
+    restart: always
+    ports:
+      - 6379:6379
+    volumes:
+      - redis_cache_content_flow:/data
+
+  api:
+    build: .
+    ports:
+      - 4000:${PORT}
+    volumes:
+      - .:/usr/src/app
+    environment:
+      - PORT=${PORT}
+      - REDIS_HOST=redis://redis_cache_content_flow:6379
+      - MONGOURI=mongodb://mongo_db_content_flow:27017/content-flow
+      - TEBI_ACCESS_KEY=${TEBI_ACCESS_KEY}
+      - TEBI_SECRET_KEY=${TEBI_SECRET_KEY}
+      - TEBI_BUCKET=${TEBI_BUCKET}
+      # Node related
+      - NODE_ENV=dev
+      - HOSTNAME=${HOSTNAME}
+      - JWT_SECRET=${JWT_SECRET}
+
+# App related
+
+    depends_on:
+      - mongo_db_content_flow
+      - redis_cache_content_flow
+
+volumes:
+  mongo_db_content_flow: {}
+  redis_cache_content_flow: {}
