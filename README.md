@@ -1,6 +1,6 @@
 # Contentflow
 Content flow is is a lightweight Content Management System (CMS) designed for rapid endpoint creation.
-With Content Flow, users can effortlessly create custom endpoints to manage and deliver content efficiently
+With Content Flow, we can effortlessly create custom endpoints to manage and deliver content efficiently
 The application is built with **Node.js** and **Express.js**, utilizing **Docker** for containerization, **Redis** for caching, and **Mongoose** for seamless interaction with the **MongoDB** database.
 
 ## Table of Contents
@@ -77,6 +77,8 @@ The application will be accessible at `http://localhost:4000`.
 The API documentation is provided using Postman documentation
 [here](https://documenter.getpostman.com/view/6256239/2s9YRGy9f9#intro)
 
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/6256239-000aa563-5594-42bd-8ffd-ed04f558f851-2s9YRGy9f9)
+
 ## Project Structure
 
 - `app.js`: The main application file.
@@ -96,6 +98,7 @@ The API documentation is provided using Postman documentation
 - MongoDB (with Mongoose)
 - Multer
 - Redis
+- Docker
 
 ## API Endpoints
 
@@ -158,17 +161,13 @@ The API documentation is provided using Postman documentation
 - `fileType`: A string indicating the type or format of the media (e.g., "image/jpeg" or "video/mp4").
 - `size`: A number representing the size of the media file in bytes.
 
-Certainly, here's a brief README on adding indexes for content type name and slug and implementing Redis caching for content types in your CMS:
-
----
-
 # Indexing and Redis Cache
 
  To optimize the retrieval of content types based on their name and slug, indexes are created.
 
 #### Indexes Added
-1. *Name*: 
-2. *Slug*: 
+1. *name* 
+2. *slug*: 
 3. *content_type_id*
 
 
@@ -176,6 +175,8 @@ Certainly, here's a brief README on adding indexes for content type name and slu
 
 To further optimize content type retrieval, implemented Redis caching.
 Caching is implemented only for **content types** due to the **low writes** and **higher reads**.
+
+
 
 
 
